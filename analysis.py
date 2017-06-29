@@ -58,7 +58,7 @@ def toMean(df):
                   "fullbathcnt", "lotsizesquarefeet", "structuretaxvaluedollarcnt", "taxvaluedollarcnt",
                    "landtaxvaluedollarcnt", "taxamount"]
     for x in missing_feature1:
-    df[x].fillna(df[x].mean(), inplace=True)
+        df[x].fillna(df[x].mean(), inplace=True)
     return df
 
   
@@ -68,28 +68,29 @@ def toMode(df):
     missing_feature2 = ["regionidcity", "censustractandblock", "regionidzip", "propertycountylandusecode"]
     for x in missing_feature2:
         df[x].fillna(df.mode()[0], inplace=True)
-    
+    return df
 
-df_train2.isnull().sum()
+#df_train2.isnull().sum()
 
 
 # yearbuilt 삭제 
 # 남은 데이터에서 결측값이 있는 row는 날려보자 
-df_train3 = df_train2.dropna()
-print(df_train3.shape)
-df_train3.tail(10)
+def delete_missing(df):
+    df2 = df.dropna()
+    print(df2.shape)
+    return df2
 
 
 # 회귀 분석을 위해 id 칼럼 삭제 
-df_train3 = df_train3.drop("missing_pct")
-df_train3 = df_train3.drop("parcelid", axis=1)
-df_train3.tail(10)
+#df_train3 = df_train3.drop("missing_pct")
+#df_train3 = df_train3.drop("parcelid", axis=1)
+#df_train3.tail(10)
 
 
 # 대부분 float로 되어 있지만 실제로는 카테고리 데이터가 많이 존재한다. 타입을 변환시켜줘야함 
-df_dtype = df_train3.dtypes.reset_index()
-df_dtype.columns = ["name", "type"]
-df_dtype
+#df_dtype = df.dtypes.reset_index()
+#df_dtype.columns = ["name", "type"]
+#df_dtype
 
 
 # 일단 리스트에 numeric과 category 변수를 각각 넣어둠 
@@ -108,7 +109,8 @@ category = ["transactiondate", "fips", "propertycountylandusecode",
 def toCat(df):
     for x in category:
         df[x] = df[x].astype(str)
+    return df
     
-df_dtype = df_train3.dtypes.reset_index()
-df_dtype.columns = ["name", "type"]
-df_dtype
+#df_dtype = df_train3.dtypes.reset_index()
+#df_dtype.columns = ["name", "type"]
+#df_dtype
