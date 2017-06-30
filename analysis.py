@@ -3,8 +3,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 dataset=pd.read_csv('./data/dataset.csv')
+# 의미 없는 첫번째 칼럼 1개 제거 
+dataset = dataset.iloc[:,1:]
 dataset.head()
-
 
 # 데이터 프레임과 변수이름 넣으면 describe와 distplot 보여줌 
 def value(df, value_name):
@@ -97,7 +98,7 @@ def delete_missing(df):
 # target = logerror
 numeric = ["bathroomcnt", "bedroomcnt", "calculatedbathnbr", "calculatedfinishedsquarefeet",
           "finishedsquarefeet12", "fullbathcnt", "latitude", "longitude",
-          "lotsizesquarefeet", "roomcnt", , "yearbuilt", "structuretaxvaluedollarcnt",
+          "lotsizesquarefeet", "roomcnt", "yearbuilt", "structuretaxvaluedollarcnt",
           "taxvaluedollarcnt", "landtaxvaluedollarcnt","taxamount"]
 category = ["transactiondate", "fips", "propertycountylandusecode", 
            "propertylandusetypeid", "rawcensustractandblock",
