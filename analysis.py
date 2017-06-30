@@ -33,8 +33,8 @@ def transaciton_month(df):
 
 # missing pct 그래프 출력 및 마지막 row에 missing pct 추가해서 리턴 
 def missing(df):
-    missing_pct = df_train.isnull().sum() / df_train.isnull().count()
-    df_train.loc["missing_pct"] = missing_pct.round(3)
+    missing_pct = df.isnull().sum() / df.isnull().count()
+    df.loc["missing_pct"] = missing_pct.round(3)
     plt.figure(figsize=(12,18))
     missing_pct = missing_pct.sort_values(ascending=False)
     sns.barplot(y=missing_pct.index, x=missing_pct.values, 
@@ -46,7 +46,7 @@ def missing(df):
   
 # missing_pct가 30% 미만인 변수만 살려본다 
 def missing30(df):
-    df2 = df.loc[:,df_train.loc["missing_pct"] < 0.3]
+    df2 = df.loc[:, df.loc["missing_pct"] < 0.3]
     print(df2.shape)
     return df2
 
