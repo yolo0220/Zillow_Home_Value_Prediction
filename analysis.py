@@ -111,6 +111,11 @@ def toCat(df):
         df[x] = df[x].astype(str)
     return df
     
+# 연속형 변수값의 평균 비교 막대그래프 
+def numeric_bar(df, x1, x2):
+    sns.barplot([x1, x2], [df[x1].mean(),
+                df[x2].mean()])
+    
 #df_dtype = df_train3.dtypes.reset_index()
 #df_dtype.columns = ["name", "type"]
 #df_dtype
